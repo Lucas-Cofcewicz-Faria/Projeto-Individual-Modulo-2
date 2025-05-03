@@ -8,9 +8,9 @@ Este projeto tem como objetivo desenvolver uma plataforma simples de reservas de
 
 ![Modelo do Banco](assets/modelo-banco.png)
 
-Para esse projeto, optei por usar 3 tabelas principais: Usuários que utilizaram da plataforma, os quais contam com nomes, ids e senhas; Salas, que o usuario poderia reservar
+Para este projeto, optei por utilizar três tabelas principais: Usuários, que representam os indivíduos que acessam a plataforma, contendo nome, ID e senha; Salas, que podem ser reservadas pelos usuários e incluem informações como tamanho, localização e ID da sala, utilizado nas reservas; e, por fim, Reservas, onde são armazenadas todas as informações referentes às reservas realizadas.
 
-código SQL:
+código DBML:
 ```
 Table users {
   idUser integer [primary key]
