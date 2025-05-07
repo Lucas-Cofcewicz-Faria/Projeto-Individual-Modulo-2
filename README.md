@@ -4,7 +4,7 @@
 Para esse projeto, optei por desenvolver um simples sistema de reserva de salas, onde o usuário se cadastra e consegue reservar salas para eventos e outros usos.
 
 ### Estrutura de Pastas
-Nesse projeto, para manter um ambiente organizado, a estrutura M.V.C (Model View Controller) sera utilizada. Com isso em mente optei por a estrutura de pastas a seguir:
+Para manter um ambiente organizado, a estrutura M.V.C (Model View Controller) sera utilizada. Com isso em mente optei por a estrutura de pastas a seguir:
 ``` 
 meu-projeto/
 │
