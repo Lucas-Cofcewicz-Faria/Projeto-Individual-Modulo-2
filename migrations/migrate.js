@@ -18,6 +18,7 @@ async function migrate() {
     console.log('Tabela "tarefas" criada com sucesso.');
   } catch (err) {
     console.error('Erro ao criar a tabela:', err.message);
+    console.error(err.stack);
   } finally {
     pool.end();
   }
