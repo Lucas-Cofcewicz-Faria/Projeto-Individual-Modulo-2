@@ -1,14 +1,16 @@
 {
   "name": "projeto-individual-m-dulo-2",
   "version": "1.0.0",
-  "description": "",
+  "description": "Para esse projeto, optei por desenvolver um simples sistema de reserva de salas, onde o usuário se cadastra e consegue reservar salas para eventos e outros usos.",
   "main": "jest.config.js",
   "directories": {
+    "doc": "docs",
     "test": "tests"
   },
   "scripts": {
     "dev": "node server.js",
-    "migrate": "node migrations/migrate.js"
+    "migrate": "node migrations/migrate.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +28,6 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "pg": "^8.15.6"
-  }
+  },
+  "type": "commonjs"
 }
