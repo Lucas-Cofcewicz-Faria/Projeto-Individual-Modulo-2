@@ -31,13 +31,13 @@ exports.listarSalas = async (req, res) => {
 
 // Editar uma sala
 exports.editarSala = async (req, res) => {
-  const { id } = req.params;
+  const { idsala } = req.params;
   const { nomesala, tamanho, idlocalizacao } = req.body;
 
   const query = `
-    UPDATE salas SET nomesala = $1, tamanho = $2, idlocalizacao = $3, updated_at = CURRENT_TIMESTAMP
-    WHERE id = $4 RETURNING *`;
-  const values = [nomesala, tamanho, idlocalizacao, id];
+    UPDATE salas SET nomesala = $1, tamanho = $2, idlocalizacao = $3
+    WHERE idsala = $4 RETURNING *`;
+  const values = [nomesala, tamanho, idlocalizacao, idsala];
 
   try {
     const result = await pool.query(query, values);
@@ -52,10 +52,9 @@ exports.editarSala = async (req, res) => {
 
 // Excluir uma sala
 exports.excluirSala = async (req, res) => {
-  const { id } = req.params;
-
-  const query = 'DELETE FROM salas WHERE id = $1 RETURNING *';
-  const values = [id];
+  const { idsala } = req.params;
+  const query = 'DELETE FROM salas WHERE idsala = $1 RETURNING *';
+  const values = [idsala];
 
   try {
     const result = await pool.query(query, values);
