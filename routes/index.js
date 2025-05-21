@@ -1,12 +1,12 @@
 // routes/index.js
 const express = require('express');
 const router = express.Router();
-const TarefaController = require('../controllers/TarefaController');
+const SalaController = require('../controllers/SalaController');
 
 // Rotas para o CRUD de tarefas
-router.post('/tarefas', TarefaController.criarTarefa);
-router.get('/tarefas', TarefaController.listarTarefas);
-router.put('/tarefas/:id', TarefaController.editarTarefa);
-router.delete('/tarefas/:id', TarefaController.excluirTarefa);
+router.post('/salas', SalaController.criarSala);
+router.get('/salas', SalaController.listarSalas);
+router.put('/salas/:id', SalaController.editarSala);
+router.delete('/salas/:id', SalaController.excluirSala);
 
 module.exports = router;
