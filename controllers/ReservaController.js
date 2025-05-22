@@ -35,9 +35,9 @@ exports.editarReserva = async (req, res) => {
   const { user_id, sala_id, status, data, horario, preco_id } = req.body;
 
   const query = `
-    UPDATE reservas SET user_id = $1, sala_id = $2, status = $3, data = $4, horario = $5, preco_id $6
+    UPDATE reservas SET user_id = $1, sala_id = $2, status = $3, data = $4, horario = $5, preco_id = $6
     WHERE idreserva = $7 RETURNING *`;
-  const values = [user_id, sala_id, status, data, horario, preco_id];
+  const values = [user_id, sala_id, status, data, horario, preco_id, idreserva];
 
   try {
     const result = await pool.query(query, values);

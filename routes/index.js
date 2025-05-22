@@ -5,6 +5,7 @@ const SalaController = require('../controllers/SalaController');
 const LocalizacaoController = require('../controllers/LocalizacaoController');
 const UserController = require('../controllers/UserController');
 const ReservaController = require('../controllers/ReservaController');
+const PrecoController = require('../controllers/PrecoController');
 
 // Rotas para o CRUD de salas
 router.post('/salas', SalaController.criarSala);
@@ -29,6 +30,13 @@ router.post('/reservas', ReservaController.criarReserva);
 router.get('/reservas', ReservaController.listarReservas);
 router.put('/reservas/:idreserva', ReservaController.editarReserva);
 router.delete('/reservas/:idreserva', ReservaController.excluirReserva);
+
+// Rotas para o CRUD de users
+router.post('/precos', PrecoController.criarPreco);
+router.get('/precos', PrecoController.listarPrecos);
+router.put('/precos/:idpreco', PrecoController.editarPreco);
+router.delete('/precos/:idpreco', PrecoController.excluirPreco);
+
 
 
 module.exports = router;
