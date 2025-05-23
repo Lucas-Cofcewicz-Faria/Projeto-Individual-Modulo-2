@@ -58,9 +58,27 @@ CREATE TABLE reservas (
 ```
 Além do modelo relacional, também criei o modelo físico, com o código SQL já estruturado e pronto pra ser usado. Ele é importante porque transforma o que foi pensado no papel em algo que realmente funciona no banco de dados, permitindo que tudo seja executado na prática.
 
+### Modelo MVC
 
+A arquitetura MVC (Model-View-Controller) é um pilar central da organização lógica e estrutural do sistema desenvolvido. O padrão MVC separa a aplicação em três camadas principais: Model, responsável pela lógica de dados; View, pela interface com o usuário; e Controller, pela intermediação entre os dados e a visualização. Essa separação facilita a manutenção, escalabilidade e entendimento do projeto.
+Com base nesse paradigma, foi desenvolvido o diagrama abaixo, que ilustra de forma clara e objetiva a interação entre as funcionalidades acessadas pelo usuário final e as estruturas de dados persistidas no banco de dados.
+O diagrama está organizado da seguinte forma:
 
+#### Cliente: 
+Representa o navegador do usuário, que interage diretamente com a interface da aplicação (Views).
 
+#### Views:
+ São as interfaces visuais que exibem informações e recebem entradas dos usuários. Cada uma está conectada a um ou mais Controllers, que processam as requisições e respostas. As views implementadas incluem o catálogo de salas, login e reserva de salas.
 
+#### Controllers: 
+Intermediários que recebem as ações da View, processam as regras de negócio e comunicam-se com os Models. Eles são responsáveis por operações como listar, gravar, atualizar e deletar dados das entidades do sistema: usuários, reservas, preços, salas e localizações.
 
+#### Models: 
+Representam a estrutura e manipulação dos dados, mapeando as entidades do banco de dados. Eles são acessados pelos Controllers para executar operações que envolvem persistência, consulta ou modificação de dados.
 
+#### 
+Servidor de Banco de Dados: Utiliza PostgreSQL, integrado ao Supabase, para armazenamento e gerenciamento dos dados de forma confiável e escalável.
+
+As conexões entre as camadas estão representadas por linhas coloridas, que facilitam a visualização do fluxo de dados em tempo real — desde a entrada do usuário até a persistência final no banco. Esse mapeamento contribui para a clareza da estrutura e o alinhamento da equipe de desenvolvimento com os objetivos técnicos do sistema.
+
+![Modelo MVC](assets/mvc_diagram.png)
