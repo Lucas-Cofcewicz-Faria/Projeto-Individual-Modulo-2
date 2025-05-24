@@ -82,3 +82,90 @@ Servidor de Banco de Dados: Utiliza PostgreSQL, integrado ao Supabase, para arma
 As conexões entre as camadas estão representadas por linhas coloridas, que facilitam a visualização do fluxo de dados em tempo real — desde a entrada do usuário até a persistência final no banco. Esse mapeamento contribui para a clareza da estrutura e o alinhamento da equipe de desenvolvimento com os objetivos técnicos do sistema.
 
 ![Modelo MVC](assets/mvc_diagram.png)
+
+### Processo de desenvolvimento dos controllers:
+
+#### Configuração do Banco de Dados
+
+A conexão com o banco foi feita usando o PostgreSQL. Para configurá-la, criei um arquivo `.env` na raiz do projeto para guardar as credenciais:
+
+```env
+DATABASE_URL=postgresql://postgres.pclmxfodzyegvmjuthxb:1234@aws-0-sa-east-1.pooler.supabase.com:5432/postgres
+DB_HOST=aws-0-sa-east-1.pooler.supabase.com
+DB_PORT=5432
+DB_USER=postgres.pclmxfodzyegvmjuthxb
+DB_PASSWORD=1234
+DB_NAME=postgres
+DB_DATABASE=postgres
+PORT=3000
+DB_SSL=true
+```
+
+Depois disso, a conexão foi configurada no arquivo `config/database.js`:
+
+```javascript
+require('dotenv').config();
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+});
+
+module.exports = pool;
+```
+
+A estrutura do banco foi criada com uma migração (`migrate.js`) e rodada pelo comando:
+
+```bash
+npm run migrate
+```
+
+Isso criou todas as tabelas necessárias para o funcionamento do sistema. usei ORM, os comandos SQL estão escritos direto nos controllers.
+
+#### Testes da API
+
+Desenvolvi um controller separado para cada entidade da base: `Users`, `Salas`, `Reservas`, `Precos` e `Localizacoes`. Para testar todos os controllers, usei o **Postman**. Testei cada função do CRUD em todas as rotas, validando tanto respostas esperadas quanto erros.
+
+#### Testes feitos:
+
+- **Users**  
+  - `POST /api/users` → Criação de usuário  
+  - `GET /api/users` → Listagem de todos os usuários 
+  - `PUT /api/users/:iduser` → Edição  
+  - `DELETE /api/users/:iduser` → Exclusão  
+
+- **Salas**  
+  - `POST /api/salas` → Criação de uma sala 
+  - `GET /api/salas` → Listagem de todas as salas  
+  - `PUT /api/salas/:idsala` → Edição de uma sala
+  - `DELETE /api/salas/:idsala` → Exclusão de uma sala
+
+
+- **Reservas**  
+ - `POST /api/reservas` → Criação de uma reserva  
+ - `GET /api/reservas` → Listagem de todas as reservas  
+ - `PUT /api/reservas/:idreserva` → Edição de uma reserva 
+ - `DELETE /api/reservas/:idreserva` → Exclusão de uma reserva 
+
+
+- **Preços**  
+ - `POST /api/precos` → Criação de um preço 
+ - `GET /api/precos` → Listagem de todos os preços
+ - `PUT /api/precos/:idpreco` → Edição de um preço
+ - `DELETE /api/precos/:idpreco` → Exclusão de um preço
+
+
+- **Localizações**  
+ - `POST /api/localizacoes` → Criação de uma localização  
+ - `GET /api/localizacoes` → Listagem de todas as localizações 
+ - `PUT /api/localizacoes/:idlocalizacao` → Edição de uma localização
+ - `DELETE /api/localizacoes/:ididlocalizacao` → Exclusão de uma localização
+
+
+Testei cada controller manualmente e simulei situações com dados inválidos, IDs inexistentes e campos obrigatórios faltando para garantir que os retornos de erro também estavam funcionando corretamente.
+
+
