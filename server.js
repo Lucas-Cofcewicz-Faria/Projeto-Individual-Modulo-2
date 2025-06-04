@@ -8,6 +8,9 @@ const routes = require('./routes');
 const app = express();
 const port = 3000;
 
+app.use('/styles', express.static(path.join('styles')));
+app.use('/assets', express.static(path.join('assets')));
+
 app.set('view engine', 'ejs');
 app.set('views', path.join('./views/pages'));
 

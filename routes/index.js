@@ -38,7 +38,7 @@ router.put('/precos/:idpreco', PrecoController.editarPreco);
 router.delete('/precos/:idpreco', PrecoController.excluirPreco);
 
 router.get('/', (req, res) => {
-  res.render('index', { mensagem: 'Servidor funcional' });
+  res.render('homepage'); // Renderiza homepage.ejs
 });
 
 module.exports = router;
