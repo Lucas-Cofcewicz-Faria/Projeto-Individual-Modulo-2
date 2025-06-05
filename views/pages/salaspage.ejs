@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Salas Encontradas – RoomBooky</title>
+  <link rel="stylesheet" href="/styles/salas.css" />
+  <!-- Fonte Yesteryear -->
+  <link href="https://fonts.googleapis.com/css2?family=Yesteryear&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Volkhov:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+ <!-- Banner com imagem de fundo e navegação -->
+<section class="top-banner">
+  <header class="top-nav">
+    <div class="logo">RoomBooky</div>
+    <nav>
+      <a href="/">Página Principal</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <div class="overlay">
+    <div class="titulo-container">
+      <span class="texto-menor">TENHA</span>
+      <h1 class="titulo-banner">Um dia inesquecível</h1>
+    </div>
+  </div>
+</section>
+
+  <!-- Barra de busca -->
+  <header class="result-header">
+    <form class="search-bar" action="/salaspage" method="GET">
+      <input type="text" name="sala" placeholder="Qual Sala?" value="<%= filters.sala || '' %>" />
+      <select name="tamanho">
+        <option value="">Qual Tamanho?</option>
+        <option value="pequeno">Pequeno</option>
+        <option value="medio">Médio</option>
+        <option value="grande">Grande</option>
+      </select>
+      <select name="horario">
+        <option value="">Horário</option>
+        <option value="08:00">08:00</option>
+        <option value="10:00">10:00</option>
+        <option value="12:00">12:00</option>
+        <option value="14:00">14:00</option>
+      </select>
+      <button type="submit" class="btn-search">Buscar</button>
+    </form>
+  </header>
+
+  <main class="salas-container">
+    <% if (salas.length === 0) { %>
+      <p class="no-results">Nenhuma sala encontrada com os filtros aplicados.</p>
+    <% } %>
+
+    <% salas.forEach(sala => { %>
+      <section class="sala-card">
+        <div class="sala-info">
+          <h2><%= sala.nomesala %></h2>
+          <p class="sala-preco"><%= sala.preco %> R$ <span>por hora</span></p>
+          <p class="sala-descricao">Sala equipada e confortável, ideal para eventos e reuniões.</p>
+
+          <ul class="sala-detalhes">
+            <li><strong>Endereço:</strong> <%= sala.endereco %></li>
+            <li><strong>Andar:</strong> <%= sala.andar %></li>
+            <li><strong>Tamanho:</strong> <%= sala.tamanho %></li>
+            <li><strong>Horário de Silêncio:</strong> 22h</li>
+          </ul>
+
+          <div class="sala-fotos">
+            <% for (let i = 0; i < 6; i++) { %>
+              <img src="/assets/sala-placeholder.jpg" alt="Foto da Sala" />
+            <% } %>
+          </div>
+        </div>
+
+        <div class="form-reserva">
+          <h3>Reserve Essa Sala</h3>
+          <p>Preencha os dados e garanta sua reserva.</p>
+          <form action="/reservas" method="POST">
+            <input type="hidden" name="sala_id" value="<%= sala.idsala %>">
+            <input type="text" name="nome" placeholder="Nome" required />
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="date" name="data" required />
+            <input type="time" name="horario" required />
+            <input type="number" name="pessoas" placeholder="Número de Pessoas" required />
+            <textarea name="mensagem" placeholder="Mensagem (opcional)"></textarea>
+            <button type="submit" class="btn-search">Reserve agora</button>
+          </form>
+        </div>
+      </section>
+    <% }); %>
+  </main>
+</body>
+</html>

@@ -41,4 +41,11 @@ router.get('/', (req, res) => {
   res.render('homepage'); // Renderiza homepage.ejs
 });
 
+router.get('/salaspage', (req, res) => {
+  res.render('salaspage', {
+    salas: [], // sem resultados por enquanto
+    filters: {} // filtros vazios
+  });
+});
+
 module.exports = router;
