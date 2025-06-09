@@ -3,7 +3,7 @@ body.homepage {
   padding: 0;
   background: url("/assets/image.png") no-repeat center center fixed;
   background-size: cover;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: white;
   height: 100vh;
   position: relative;
@@ -26,16 +26,41 @@ body.homepage {
   background: transparent;
 }
 
+.top-nav {
+  position: relative;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+/* 4.1) Logo: fonte Volkhov 32px branca */
+.top-nav .logo {
+  font-family: 'Volkhov', serif;
+  font-size: 32px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* 4.2) Links de navegação */
+.top-nav nav a {
+  color: #ffffff;
+  margin-left: 30px;
+  font-size: 16px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.top-nav nav a:hover {
+  color: #e26a4a;
+}
 .logo {
   font-size: 20px;
   font-weight: bold;
 }
 
-.top-nav a {
-  margin-left: 30px;
-  color: white;
-  text-decoration: none;
-}
+
 
 .hero-content {
   position: relative;

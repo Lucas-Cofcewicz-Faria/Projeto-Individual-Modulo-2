@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login – RoomBooky</title>
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Volkhov:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS da página -->
+  <link rel="stylesheet" href="/styles/login.css" />
+</head>
+<body class="login-page">
+
+  <!-- Fundo + overlay -->
+  <div class="background"></div>
+  <div class="background-overlay"></div>
+
+  <!-- Header -->
+  <header class="top-nav">
+    <a href="/" class="logo">RoomBooky</a>
+    <nav>
+      <a href="/">Página Principal</a>
+      <a href="/login">Login</a>
+      <a href="/salaspage">Salas</a>
+    </nav>
+  </header>
+
+  <!-- Container com Login e Signup -->
+  <main class="form-container">
+    <!-- LOGIN VIEW -->
+    <div id="login-view" class="view active">
+      <h2>Bem Vindo de Volta</h2>
+
+      <label for="login-email">Email</label>
+      <input id="login-email" type="email" placeholder="seu@email.com" />
+
+      <label for="login-senha">Senha</label>
+      <input id="login-senha" type="password" placeholder="********" />
+
+      <button id="btn-login" class="btn-login">Logar</button>
+
+      <p class="link-switch">
+        Não tem uma conta?
+        <a href="#" id="show-signup">Crie uma conta</a>
+      </p>
+    </div>
+
+    <!-- SIGNUP VIEW -->
+    <div id="signup-view" class="view">
+      <h2>Seja um membro RoomBooky</h2>
+
+      <label for="signup-nome">Nome</label>
+      <input id="signup-nome" type="text" placeholder="Seu Nome" />
+
+      <label for="signup-email">Email</label>
+      <input id="signup-email" type="email" placeholder="seu@email.com" />
+
+      <label for="signup-senha">Senha</label>
+      <input id="signup-senha" type="password" placeholder="********" />
+
+      <button id="btn-signup" class="btn-login">Criar Conta</button>
+
+      <p class="link-switch">
+        Já tem uma conta?
+        <a href="#" id="show-login">Login</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Script de alternância e fetch -->
+  <script>
+    const loginView  = document.getElementById('login-view');
+    const signupView = document.getElementById('signup-view');
+    const showSignup = document.getElementById('show-signup');
+    const showLogin  = document.getElementById('show-login');
+
+    function exibirErro(texto) {
+      const prev = document.getElementById('error-message');
+      if (prev) prev.remove();
+      const div = document.createElement('div');
+      div.id = 'error-message';
+      div.style.color = 'red';
+      div.style.marginBottom = '16px';
+      div.textContent = texto;
+      document.querySelector('.view.active').insertBefore(div, document.querySelector('.view.active').firstChild);
+    }
+
+    showSignup.addEventListener('click', e => {
+      e.preventDefault();
+      loginView.classList.remove('active');
+      signupView.classList.add('active');
+      const err = document.getElementById('error-message');
+      if (err) err.remove();
+    });
+
+    showLogin.addEventListener('click', e => {
+      e.preventDefault();
+      signupView.classList.remove('active');
+      loginView.classList.add('active');
+      const err = document.getElementById('error-message');
+      if (err) err.remove();
+    });
+
+    // Login
+    document.getElementById('btn-login').addEventListener('click', async e => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const senha = document.getElementById('login-senha').value.trim();
+      if (!email || !senha) {
+        exibirErro('Preencha email e senha para entrar.');
+        return;
+      }
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, senha })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          exibirErro(data.error || 'Erro ao tentar logar.');
+          return;
+        }
+        window.location.href = '/minhas-reservas';
+      } catch {
+        exibirErro('Falha na conexão. Tente novamente.');
+      }
+    });
+
+    // Create account
+    document.getElementById('btn-signup').addEventListener('click', async e => {
+      e.preventDefault();
+      const nome  = document.getElementById('signup-nome').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const senha = document.getElementById('signup-senha').value.trim();
+      if (!nome || !email || !senha) {
+        exibirErro('Preencha nome, email e senha para criar conta.');
+        return;
+      }
+      try {
+        const res = await fetch('/api/criarconta', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome, email, senha })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          exibirErro(data.error || 'Erro ao criar conta.');
+          return;
+        }
+        window.location.href = '/dashboard';
+      } catch {
+        exibirErro('Falha na conexão. Tente novamente.');
+      }
+    });
+  </script>
+</body>
+</html>

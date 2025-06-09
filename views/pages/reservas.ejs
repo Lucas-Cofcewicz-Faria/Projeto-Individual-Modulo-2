@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Suas Reservas – RoomBooky</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Volkhov:wght@700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS da Dashboard -->
+  <link rel="stylesheet" href="/styles/dashboard.css">
+</head>
+<body class="dashboard-page" data-user-id="<%= userId %>">
+  <!-- Header / Nav -->
+  <header class="top-nav">
+    <div class="logo">RoomBooky</div>
+    <nav>
+      <a href="/">Página Principal</a>
+      <a href="/login">Sair</a>
+      <a href="/salaspage">Salas</a>
+    </nav>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="dashboard-container">
+    <h1>Suas Reservas</h1>
+
+    <!-- Filtro (opcional para implementação futura) -->
+    <div class="filter-bar">
+      <label>
+        Qual Sala?
+        <select id="filter-sala">
+          <option value="">Todas</option>
+          <% reservas.forEach(r => { %>
+            <option value="<%= r.idsala %>"><%= r.nomesala %></option>
+          <% }) %>
+        </select>
+      </label>
+      <label>
+        Qual data?
+        <input type="date" id="filter-data">
+      </label>
+      <label>
+        Horário
+        <input type="time" id="filter-hora">
+      </label>
+      <button id="btn-filtrar">Pesquisar</button>
+    </div>
+
+    <!-- Lista de Reservas -->
+    <% if (reservas.length === 0) { %>
+      <p class="no-reservas">Você não possui reservas.</p>
+    <% } else { %>
+      <% reservas.forEach(function(r) { %>
+        <div class="reserva-card" data-reserva-id="<%= r.idreserva %>">
+          <div class="reserva-info">
+            <p><strong>Sala:</strong> <%= r.nomesala %> (#<%= r.idsala %>)</p>
+            <p><strong>Endereço:</strong> <%= r.endereco %></p>
+            <p><strong>Data:</strong> <%= r.data_reserva %></p>
+            <p><strong>Horário:</strong> <%= r.hora_inicio %> – <%= r.hora_fim %></p>
+            <p><strong>Preço:</strong> R$ <%= Number(r.preco_total).toFixed(2) %></p>
+          </div>
+          <button class="btn-cancelar">Cancelar</button>
+        </div>
+      <% }); %>
+    <% } %>
+  </main>
+
+  <!-- Script para cancelar reservas -->
+  <script>
+    document.querySelectorAll('.btn-cancelar').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const card = btn.closest('.reserva-card');
+        const id   = card.dataset.reservaId;
+        if (!confirm('Deseja cancelar esta reserva?')) return;
+
+        try {
+          const res = await fetch('/reservas/' + id, { method: 'DELETE' });
+          const json = await res.json();
+          if (!res.ok) throw new Error(json.error || 'Erro ao cancelar');
+          card.remove();
+        } catch (err) {
+          alert(err.message);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

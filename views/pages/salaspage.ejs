@@ -1,96 +1,213 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <title>Salas Encontradas – RoomBooky</title>
-  <link rel="stylesheet" href="/styles/salas.css" />
-  <!-- Fonte Yesteryear -->
+  <link rel="stylesheet" href="/styles/salas.css"/>
+  <!-- Fontes -->
   <link href="https://fonts.googleapis.com/css2?family=Yesteryear&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Volkhov:wght@700&display=swap" rel="stylesheet">
 </head>
-<body>
- <!-- Banner com imagem de fundo e navegação -->
-<section class="top-banner">
-  <header class="top-nav">
-    <div class="logo">RoomBooky</div>
-    <nav>
-      <a href="/">Página Principal</a>
-      <a href="#">Login</a>
-    </nav>
-  </header>
-
-  <div class="overlay">
-    <div class="titulo-container">
-      <span class="texto-menor">TENHA</span>
-      <h1 class="titulo-banner">Um dia inesquecível</h1>
+<body class="homepage" data-user-id="<%= userId || '' %>">
+  <!-- Banner e Nav -->
+  <section class="top-banner">
+    <header class="top-nav">
+      <div class="logo">RoomBooky</div>
+      <nav>
+        <a href="/">Página Principal</a>
+        <a href="/minhas-reservas">Reservas</a>
+        <a href="/login">Login</a>
+      </nav>
+    </header>
+    <div class="overlay">
+      <div class="titulo-container">
+        <span class="texto-menor">TENHA</span>
+        <h1 class="titulo-banner">Um dia inesquecível</h1>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Barra de busca -->
   <header class="result-header">
     <form class="search-bar" action="/salaspage" method="GET">
-      <input type="text" name="sala" placeholder="Qual Sala?" value="<%= filters.sala || '' %>" />
+      <input
+        type="text"
+        name="sala"
+        placeholder="Qual Sala?"
+        value="<%= filters.sala || '' %>"
+      />
       <select name="tamanho">
         <option value="">Qual Tamanho?</option>
-        <option value="pequeno">Pequeno</option>
-        <option value="medio">Médio</option>
-        <option value="grande">Grande</option>
-      </select>
-      <select name="horario">
-        <option value="">Horário</option>
-        <option value="08:00">08:00</option>
-        <option value="10:00">10:00</option>
-        <option value="12:00">12:00</option>
-        <option value="14:00">14:00</option>
+        <option value="pequeno" <%= filters.tamanho==='pequeno' ? 'selected':'' %>>
+          Pequeno
+        </option>
+        <option value="medio" <%= filters.tamanho==='medio' ? 'selected':'' %>>
+          Médio
+        </option>
+        <option value="grande" <%= filters.tamanho==='grande' ? 'selected':'' %>>
+          Grande
+        </option>
       </select>
       <button type="submit" class="btn-search">Buscar</button>
     </form>
   </header>
 
   <main class="salas-container">
-    <% if (salas.length === 0) { %>
+    <% if (!salas || salas.length === 0) { %>
       <p class="no-results">Nenhuma sala encontrada com os filtros aplicados.</p>
-    <% } %>
-
-    <% salas.forEach(sala => { %>
-      <section class="sala-card">
-        <div class="sala-info">
-          <h2><%= sala.nomesala %></h2>
-          <p class="sala-preco"><%= sala.preco %> R$ <span>por hora</span></p>
-          <p class="sala-descricao">Sala equipada e confortável, ideal para eventos e reuniões.</p>
-
-          <ul class="sala-detalhes">
-            <li><strong>Endereço:</strong> <%= sala.endereco %></li>
-            <li><strong>Andar:</strong> <%= sala.andar %></li>
-            <li><strong>Tamanho:</strong> <%= sala.tamanho %></li>
-            <li><strong>Horário de Silêncio:</strong> 22h</li>
-          </ul>
-
-          <div class="sala-fotos">
-            <% for (let i = 0; i < 6; i++) { %>
-              <img src="/assets/sala-placeholder.jpg" alt="Foto da Sala" />
+    <% } else { %>
+      <% salas.forEach(function(sala) { %>
+        <section class="sala-card">
+          <div class=\"sala-info\">
+            <% if (sala.preco != null) { %>
+            <h2><%= sala.nomesala %></h2>
+                          <p class=\"sala-preco\">R$ <%= sala.preco.toFixed(2) %> <span>por hora</span></p>
+            <% } else { %>
+              <p class=\"sala-preco\">Preço não disponível</p>
             <% } %>
+            <p class="sala-descricao">Sala equipada e confortável, ideal para eventos e reuniões.</p>
+            <ul class="sala-detalhes">
+              <li><strong>Endereço:</strong> <%= sala.endereco %></li>
+              <li><strong>Andar:</strong> <%= sala.andar %></li>
+              <li><strong>Tamanho:</strong> <%= sala.tamanho %></li>
+              <li><strong>Horário de Silêncio:</strong> 22h</li>
+            </ul>
           </div>
-        </div>
 
-        <div class="form-reserva">
-          <h3>Reserve Essa Sala</h3>
-          <p>Preencha os dados e garanta sua reserva.</p>
-          <form action="/reservas" method="POST">
-            <input type="hidden" name="sala_id" value="<%= sala.idsala %>">
-            <input type="text" name="nome" placeholder="Nome" required />
-            <input type="email" name="email" placeholder="Email" required />
-            <input type="date" name="data" required />
-            <input type="time" name="horario" required />
-            <input type="number" name="pessoas" placeholder="Número de Pessoas" required />
-            <textarea name="mensagem" placeholder="Mensagem (opcional)"></textarea>
-            <button type="submit" class="btn-search">Reserve agora</button>
-          </form>
-        </div>
-      </section>
-    <% }); %>
+          <div class="form-reserva">
+            <h3>Reserve Essa Sala</h3>
+            <form class="reserva-form" data-sala-id="<%= sala.idsala %>">
+              <input type="hidden" name="preco_id" value="<%= sala.preco_id %>" />
+
+              <label for="data-<%= sala.idsala %>">Data</label>
+              <input
+                id="data-<%= sala.idsala %>"
+                type="date"
+                name="data_reserva"
+                required
+              />
+
+              <label for="inicio-<%= sala.idsala %>">Início</label>
+              <input
+                id="inicio-<%= sala.idsala %>"
+                type="time"
+                name="hora_inicio"
+                min="08:00"
+                max="22:00"
+                required
+              />
+
+              <label for="fim-<%= sala.idsala %>">Fim</label>
+              <input
+                id="fim-<%= sala.idsala %>"
+                type="time"
+                name="hora_fim"
+                min="08:00"
+                max="22:00"
+                required
+              />
+
+              <!-- Preço fixo por hora, sem loop de precos -->
+              <label>Preço / hora</label>
+                <% if (sala.preco != null) { %>
+                <p class="sala-preco">R$ <%= sala.preco.toFixed(2) %> <span>por hora</span></p>
+                <% } else { %>
+                <p class="sala-preco">Preço não disponível</p>
+                <% } %>
+              <input type="hidden" name="preco_id" value="<%= sala.preco_id %>" />
+              <button
+                type="submit"
+                class="btn-search"
+                <%= !userId ? 'disabled' : '' %>
+                <%= userId ? 'Reservar agora' : 'Faça login para reservar' %>
+              </button>
+            </form>
+          </div>
+        </section>
+      <% }); %>
+    <% } %>
   </main>
+
+  <!-- Modal de Sucesso -->
+  <div id="reserva-modal" class="modal hidden">
+    <div class="modal-content">
+      <p id="reserva-msg"></p>
+      <button id="minhas-reservas">Minhas Reservas</button>
+      <button id="close-modal">Fechar</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Pega o userId que colocamos em data-user-id no <body>
+      const rawUser = document.body.getAttribute('data-user-id');
+      const USER_ID = rawUser ? Number(rawUser) : null;
+
+      // Para cada formulário de reserva na página...
+      document.querySelectorAll('.reserva-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          if (!USER_ID) {
+            alert('Você precisa estar logado para reservar.');
+            return;
+          }
+
+          // Extrai valores do form
+          const sala_id      = parseInt(form.dataset.salaId, 10);
+          const data_reserva = form.querySelector('[name="data_reserva"]').value;
+          const hora_inicio  = form.querySelector('[name="hora_inicio"]').value;
+          const hora_fim     = form.querySelector('[name="hora_fim"]').value;
+          const preco_id     = parseInt(form.querySelector('[name="preco_id"]').value, 10);
+
+          // Faz o POST na rota CORRETA (/reservas)
+          fetch('/reservas', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              user_id:      USER_ID,
+              sala_id:      sala_id,
+              data_reserva: data_reserva,
+              hora_inicio:  hora_inicio,
+              hora_fim:     hora_fim,
+              preco_id:     preco_id
+            })
+          })
+          .then(function(res) {
+            return res.json().then(function(json) {
+              if (!res.ok) throw new Error(json.error || 'Erro ao criar reserva.');
+
+              // Converte preco_total (que vem possivelmente como string) em número
+              const precoTotal = Number(json.reserva.preco_total);
+
+              // Atualiza o conteúdo do <p id="reserva-msg">
+              document.getElementById('reserva-msg').innerHTML =
+                '<strong>Reserva criada com sucesso!</strong><br>' +
+                'Sala: '           + sala_id                        + '<br>' +
+                'Data: '           + data_reserva                   + '<br>' +
+                'Horário: '        + hora_inicio + ' – ' + hora_fim + '<br>' +
+                'Preço total: R$ ' + precoTotal.toFixed(2);
+
+              // Exibe o modal
+              document.getElementById('reserva-modal').classList.remove('hidden');
+            });
+          })
+          .catch(function(err) {
+            alert(err.message);
+          });
+        });
+      });
+
+      // Botão “Minhas Reservas” leva ao dashboard do usuário
+      document.getElementById('minhas-reservas').addEventListener('click', function() {
+        window.location.href = '/minhas-reservas';
+      });
+      // Botão “Fechar” esconde o modal
+      document.getElementById('close-modal').addEventListener('click', function() {
+        document.getElementById('reserva-modal').classList.add('hidden');
+      });
+    })();
+  </script>
+
 </body>
 </html>
