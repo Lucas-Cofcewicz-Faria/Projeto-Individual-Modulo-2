@@ -117,11 +117,12 @@
                 <% } %>
               <input type="hidden" name="preco_id" value="<%= sala.preco_id %>" />
               <button
-                type="submit"
-                class="btn-search"
-                <%= !userId ? 'disabled' : '' %>
-                <%= userId ? 'Reservar agora' : 'Faça login para reservar' %>
-              </button>
+  type="submit"
+  class="btn-search"
+  <%= !userId ? 'disabled' : '' %>
+>
+  <%= userId ? 'Reservar agora' : 'Faça login para reservar' %>
+</button>
             </form>
           </div>
         </section>
