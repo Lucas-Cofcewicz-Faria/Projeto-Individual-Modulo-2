@@ -34,4 +34,4 @@ meu-projeto/
 ```
 
 ### Como rodar o projeto?
-Mas afinal como posso iniciar o servidor do projeto? Nesse projeto os dois métodos mais fáceis de iniciar o servidor é usar o comando "npm run dev".
+Mas afinal como posso iniciar o servidor do projeto? Nesse projeto os dois métodos mais fácil de iniciar o servidor é usar o comando "npm run dev" em um novo terminal. Depois disso, como o servidor inicia no port 3000 é apenas entrar nessa página http://localhost:3000.
