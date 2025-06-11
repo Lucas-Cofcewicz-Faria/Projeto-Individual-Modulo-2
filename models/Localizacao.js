@@ -1,4 +1,4 @@
-// models/Sala.js
+
 const pool = require('../config/database');
 
 async function createLocalizacao({ nomelocal, endereco, andar }) {

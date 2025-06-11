@@ -1,12 +1,8 @@
-// controllers/UserController.js
+
 const bcrypt = require('bcrypt');
 const User   = require('../models/User');
 const saltRounds = 10;
 
-/**
- * POST /api/criarconta
- * Body: { nome, email, senha }
- */
 exports.criarConta = async (req, res) => {
   const { nome, email, senha } = req.body;
   if (!nome || !email || !senha) {
@@ -14,19 +10,19 @@ exports.criarConta = async (req, res) => {
   }
 
   try {
-    // Verifica duplicidade de e-mail
+   
     const exists = await User.findByEmail(email);
     if (exists) {
       return res.status(400).json({ error: 'Este e-mail já está em uso.' });
     }
 
-    // Hash da senha
+   
     const hash = await bcrypt.hash(senha, saltRounds);
 
-    // Cria usuário via model
+   
     const newUser = await User.createUser({ nome, email, senha: hash });
 
-    // Auto-login
+    
     req.session.userId = newUser.iduser;
 
     return res.status(201).json({ success: true, user: newUser });
@@ -36,10 +32,6 @@ exports.criarConta = async (req, res) => {
   }
 };
 
-/**
- * POST /api/login
- * Body: { email, senha }
- */
 exports.login = async (req, res) => {
   const { email, senha } = req.body;
   if (!email || !senha) {
@@ -57,7 +49,6 @@ exports.login = async (req, res) => {
       return res.status(400).json({ error: 'Credenciais inválidas.' });
     }
 
-    // Cria sessão
     req.session.userId = user.iduser;
 
     return res.json({
@@ -70,10 +61,7 @@ exports.login = async (req, res) => {
   }
 };
 
-/**
- * Métodos CRUD de usuário (se precisar)
- */
-exports.criarUsers  = async (req, res) => { /* ...igual à createUser do model... */ };
+exports.criarUsers  = async (req, res) => { };
 exports.listarUsers = async (req, res) => {
   try {
     const users = await User.getAllUsers();

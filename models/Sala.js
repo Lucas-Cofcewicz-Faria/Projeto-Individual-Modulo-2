@@ -1,4 +1,4 @@
-// models/Sala.js
+
 const pool = require('../config/database');
 
 async function createSala({ nomesala, tamanho, idlocalizacao }) {
@@ -73,10 +73,10 @@ async function buscarComFiltros({ sala, tamanho }) {
   const tamanhoParam = tamanho && tamanho.trim() !== '' ? tamanho.trim() : null;
   const result = await pool.query(sql, [nomeParam, tamanhoParam]);
 
-  // converte preco de string → number
+  
   const rows = result.rows.map(r => ({
     ...r,
-    preco_id: r.preco_id,                            // já vem como número
+    preco_id: r.preco_id,                            
     preco:    r.preco    != null ? parseFloat(r.preco) : null
   }));
 

@@ -46,28 +46,23 @@
   </main>
 
   <script>
-    // Intercepta o submit, faz fetch e redireciona para /salaspage
     document.querySelector('.search-form').addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Lê valores
       const salaInput    = document.querySelector('input[name="sala"]').value.trim();
       const tamanhoInput = document.querySelector('select[name="tamanho"]').value;
 
-      // Se não preencher, impede
       if (!salaInput || !tamanhoInput) {
         alert('Preencha ambos os campos antes de buscar.');
         return;
       }
 
-      // Monta query string
       const params = new URLSearchParams({
         sala:    salaInput,
         tamanho: tamanhoInput
       });
 
       try {
-        // Chama a API de busca (retorna JSON)
         const response = await fetch(`/api/salas?${params.toString()}`, {
           method: 'GET',
           headers: {
@@ -80,7 +75,6 @@
         const data = await response.json();
         console.log('Salas encontradas (JSON):', data);
 
-        // Redireciona para a página de resultados EJS (mantendo a query na URL)
         window.location.href = `/salaspage?${params.toString()}`;
       } catch (err) {
         console.error(err);

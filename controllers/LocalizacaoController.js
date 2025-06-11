@@ -1,4 +1,4 @@
-// controllers/SalaController.js
+
 const Localizacao = require('../models/Localizacao');
 
 exports.criarLocalizacao = async (req, res) => {

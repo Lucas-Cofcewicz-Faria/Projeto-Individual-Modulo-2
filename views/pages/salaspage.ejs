@@ -4,13 +4,11 @@
   <meta charset="UTF-8"/>
   <title>Salas Encontradas – RoomBooky</title>
   <link rel="stylesheet" href="/styles/salas.css"/>
-  <!-- Fontes -->
   <link href="https://fonts.googleapis.com/css2?family=Yesteryear&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Volkhov:wght@700&display=swap" rel="stylesheet">
 </head>
 <body class="homepage" data-user-id="<%= userId || '' %>">
-  <!-- Banner e Nav -->
   <section class="top-banner">
     <header class="top-nav">
       <div class="logo">RoomBooky</div>
@@ -28,7 +26,6 @@
     </div>
   </section>
 
-  <!-- Barra de busca -->
   <header class="result-header">
     <form class="search-bar" action="/salaspage" method="GET">
       <input
@@ -108,7 +105,6 @@
                 required
               />
 
-              <!-- Preço fixo por hora, sem loop de precos -->
               <label>Preço / hora</label>
                 <% if (sala.preco != null) { %>
                 <p class="sala-preco">R$ <%= sala.preco.toFixed(2) %> <span>por hora</span></p>
@@ -130,7 +126,6 @@
     <% } %>
   </main>
 
-  <!-- Modal de Sucesso -->
   <div id="reserva-modal" class="modal hidden">
     <div class="modal-content">
       <p id="reserva-msg"></p>
@@ -141,11 +136,8 @@
 
   <script>
     (function() {
-      // Pega o userId que colocamos em data-user-id no <body>
       const rawUser = document.body.getAttribute('data-user-id');
       const USER_ID = rawUser ? Number(rawUser) : null;
-
-      // Para cada formulário de reserva na página...
       document.querySelectorAll('.reserva-form').forEach(function(form) {
         form.addEventListener('submit', function(e) {
           e.preventDefault();
@@ -154,14 +146,12 @@
             return;
           }
 
-          // Extrai valores do form
           const sala_id      = parseInt(form.dataset.salaId, 10);
           const data_reserva = form.querySelector('[name="data_reserva"]').value;
           const hora_inicio  = form.querySelector('[name="hora_inicio"]').value;
           const hora_fim     = form.querySelector('[name="hora_fim"]').value;
           const preco_id     = parseInt(form.querySelector('[name="preco_id"]').value, 10);
 
-          // Faz o POST na rota CORRETA (/reservas)
           fetch('/reservas', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -177,11 +167,7 @@
           .then(function(res) {
             return res.json().then(function(json) {
               if (!res.ok) throw new Error(json.error || 'Erro ao criar reserva.');
-
-              // Converte preco_total (que vem possivelmente como string) em número
               const precoTotal = Number(json.reserva.preco_total);
-
-              // Atualiza o conteúdo do <p id="reserva-msg">
               document.getElementById('reserva-msg').innerHTML =
                 '<strong>Reserva criada com sucesso!</strong><br>' +
                 'Sala: '           + sala_id                        + '<br>' +
@@ -189,7 +175,6 @@
                 'Horário: '        + hora_inicio + ' – ' + hora_fim + '<br>' +
                 'Preço total: R$ ' + precoTotal.toFixed(2);
 
-              // Exibe o modal
               document.getElementById('reserva-modal').classList.remove('hidden');
             });
           })
@@ -199,11 +184,9 @@
         });
       });
 
-      // Botão “Minhas Reservas” leva ao dashboard do usuário
       document.getElementById('minhas-reservas').addEventListener('click', function() {
         window.location.href = '/minhas-reservas';
       });
-      // Botão “Fechar” esconde o modal
       document.getElementById('close-modal').addEventListener('click', function() {
         document.getElementById('reserva-modal').classList.add('hidden');
       });

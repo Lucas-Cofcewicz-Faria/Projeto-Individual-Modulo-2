@@ -1,8 +1,8 @@
-// models/User.js
+
 const pool = require('../config/database');
 
 /**
- * Busca um usuário pelo e-mail.
+ * 
  * @param {string} email
  * @returns {Promise<Object|null>}
  */
@@ -15,7 +15,7 @@ async function findByEmail(email) {
 }
 
 /**
- * Cria um novo usuário.
+ * 
  * @param {{ nome: string, email: string, senha: string }} data
  * @returns {Promise<{ iduser: number, nome: string, email: string }>}
  */
@@ -30,7 +30,7 @@ async function createUser({ nome, email, senha }) {
 }
 
 /**
- * Retorna todos os usuários (sem senha).
+ * 
  * @returns {Promise<Array>}
  */
 async function getAllUsers() {
@@ -41,7 +41,7 @@ async function getAllUsers() {
 }
 
 /**
- * Atualiza um usuário.
+ * 
  * @param {number} iduser
  * @param {{ nome: string, email: string, senha?: string }} data
  * @returns {Promise<Object|null>}
@@ -59,7 +59,7 @@ async function updateUser(iduser, { nome, email, senha }) {
 }
 
 /**
- * Exclui um usuário.
+ * 
  * @param {number} iduser
  * @returns {Promise<Object|null>}
  */

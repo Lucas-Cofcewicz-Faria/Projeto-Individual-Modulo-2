@@ -1,7 +1,7 @@
-// controllers/PrecoController.js
+
 const Preco = require('../models/Preco');
 
-// Cria um novo preço
+
 exports.criarPreco = async (req, res) => {
   try {
     const novo = await Preco.criarPreco(req.body);

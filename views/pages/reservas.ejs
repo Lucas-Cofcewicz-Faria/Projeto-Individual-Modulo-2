@@ -3,18 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Suas Reservas – RoomBooky</title>
-
-  <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Volkhov:wght@700&display=swap"
     rel="stylesheet"
   />
 
-  <!-- CSS da Dashboard -->
   <link rel="stylesheet" href="/styles/dashboard.css">
 </head>
 <body class="dashboard-page" data-user-id="<%= userId %>">
-  <!-- Header / Nav -->
   <header class="top-nav">
     <div class="logo">RoomBooky</div>
     <nav>
@@ -24,11 +20,8 @@
     </nav>
   </header>
 
-  <!-- Conteúdo Principal -->
   <main class="dashboard-container">
     <h1>Suas Reservas</h1>
-
-    <!-- Filtro (opcional para implementação futura) -->
     <div class="filter-bar">
       <label>
         Qual Sala?
@@ -50,7 +43,6 @@
       <button id="btn-filtrar">Pesquisar</button>
     </div>
 
-    <!-- Lista de Reservas -->
     <% if (reservas.length === 0) { %>
       <p class="no-reservas">Você não possui reservas.</p>
     <% } else { %>
@@ -69,7 +61,6 @@
     <% } %>
   </main>
 
-  <!-- Script para cancelar reservas -->
   <script>
     document.querySelectorAll('.btn-cancelar').forEach(btn => {
       btn.addEventListener('click', async () => {

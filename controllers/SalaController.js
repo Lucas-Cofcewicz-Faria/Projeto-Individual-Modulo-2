@@ -1,4 +1,4 @@
-// controllers/SalaController.js
+
 const Sala = require('../models/Sala');
 
 // → Cria sala (JSON)

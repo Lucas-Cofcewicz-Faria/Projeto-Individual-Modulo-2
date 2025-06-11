@@ -35,7 +35,6 @@ body.homepage {
   z-index: 2;
 }
 
-/* 4.1) Logo: fonte Volkhov 32px branca */
 .top-nav .logo {
   font-family: 'Volkhov', serif;
   font-size: 32px;
@@ -43,7 +42,6 @@ body.homepage {
   text-decoration: none;
 }
 
-/* 4.2) Links de navegação */
 .top-nav nav a {
   color: #ffffff;
   margin-left: 30px;
@@ -59,8 +57,6 @@ body.homepage {
   font-size: 20px;
   font-weight: bold;
 }
-
-
 
 .hero-content {
   position: relative;
@@ -111,7 +107,7 @@ body.homepage {
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   color: white;
-  background: #E46A4A; /* laranja normal */
+  background: #E46A4A; 
   border-radius: 10px;
   border: none;
   outline: 2px solid #d6593d;
@@ -128,7 +124,7 @@ body.homepage {
 .btn-search:hover {
   transform: scale(1.05);
   box-shadow: 0 0 18px 4px rgba(255, 130, 80, 0.4);
-  background: #f17353; /* um laranja mais claro pra dar brilho */
+  background: #f17353; 
   outline: none;
 }
 

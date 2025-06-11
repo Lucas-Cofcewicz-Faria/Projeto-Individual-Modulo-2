@@ -1,6 +1,4 @@
-/* assets/LoginPage.css */
 
-/* 1) Reset básico e fonte padrão */
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +12,6 @@ body.login-page {
   position: relative;
 }
 
-/* 2) Background fixo cobrindo toda a tela: usa a imagem em /assets */
 .background {
   position: fixed;
   top: 0;
@@ -25,7 +22,6 @@ body.login-page {
   z-index: -2;
 }
 
-/* 3) Overlay semitransparente para escurecer o fundo */
 .background-overlay {
   position: fixed;
   top: 0;
@@ -36,7 +32,6 @@ body.login-page {
   z-index: -1;
 }
 
-/* 4) Header (top-nav), idêntico às outras páginas */
 .top-nav {
   position: relative;
   width: 100%;
@@ -47,7 +42,6 @@ body.login-page {
   z-index: 1;
 }
 
-/* 4.1) Logo: fonte Volkhov 32px branca */
 .top-nav .logo {
   font-family: 'Volkhov', serif;
   font-size: 32px;
@@ -55,7 +49,6 @@ body.login-page {
   text-decoration: none;
 }
 
-/* 4.2) Links de navegação */
 .top-nav nav a {
   color: #ffffff;
   margin-left: 30px;
@@ -68,12 +61,11 @@ body.login-page {
   color: #e26a4a;
 }
 
-/* 5) Container branco centralizado para formulários */
 .form-container {
-  position: absolute;          /* sai do fluxo e posiciona em relação ao body */
-  top: 50%;                    /* ponto médio vertical do body */
-  left: 50%;                   /* ponto médio horizontal do body */
-  transform: translate(-50%, -50%); /* “puxa” o elemento para centralizar */
+  position: absolute;          
+  top: 50%;                   
+  left: 50%;                   
+  transform: translate(-50%, -50%); 
   width: 100%;
   max-width: 480px;
   background-color: #ffffff;
@@ -83,7 +75,6 @@ body.login-page {
   z-index: 1;
 }
 
-/* 6) Cada “view” (login/signup) */
 .view {
   display: none;
   width: 100%;
@@ -93,7 +84,6 @@ body.login-page {
   display: block;
 }
 
-/* 7) Título de cada formulário */
 .form-container h2 {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
@@ -103,7 +93,6 @@ body.login-page {
   margin-bottom: 30px;
 }
 
-/* 8) Labels e Inputs */
 .form-container label {
   display: block;
   font-size: 16px;
@@ -131,7 +120,6 @@ body.login-page {
   border-color: #e26a4a;
 }
 
-/* 9) Botão com animação igual às outras páginas (classe .btn-login) */
 .btn-login {
   display: block;
   width: 100%;
@@ -154,7 +142,6 @@ body.login-page {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* 10) Texto “link” para alternar entre login e signup */
 .link-switch {
   text-align: center;
   font-size: 14px;

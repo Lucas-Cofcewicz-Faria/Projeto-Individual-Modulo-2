@@ -1,5 +1,4 @@
 
-/* Fonte principal */
 body {
   margin: 0;
   padding: 0;
@@ -9,7 +8,6 @@ body {
   color: #333;
 }
 
-/* TOPO COM IMAGEM */
 .top-banner {
   width: 100%;
   height: 450px;
@@ -86,10 +84,9 @@ body {
   font-size: 64px;
   color: white;
   margin: 0;
-  font-weight: normal; /* evita herança de bold */
+  font-weight: normal; 
 }
 
-/* BARRA DE BUSCA */
 .result-header {
   background: white;
   padding: 30px 70px;
@@ -132,7 +129,6 @@ body {
   background: #f17353;
 }
 
-/* CONTAINER DE SALAS */
 .salas-container {
   padding: 60px 80px;
   display: flex;
@@ -140,7 +136,6 @@ body {
   gap: 60px;
 }
 
-/* CARD DE SALA */
 .sala-card {
   background: white;
   border-radius: 20px;
@@ -151,7 +146,6 @@ body {
   box-shadow: 0 8px 30px rgba(0,0,0,0.05);
 }
 
-/* LADO ESQUERDO */
 .sala-info {
   flex: 2;
 }
@@ -183,7 +177,6 @@ body {
   margin-bottom: 6px;
 }
 
-/* FOTOS */
 .sala-fotos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -196,7 +189,6 @@ body {
   object-fit: cover;
 }
 
-/* FORMULÁRIO DE RESERVA */
 .form-reserva {
   flex: 1;
   background: #f1f1f1;

@@ -1,8 +1,8 @@
-// models/Reserva.js
+
 const pool = require('../config/database');
 
 /**
- * Cria uma reserva com data, horário de início/fim e preço total.
+ * 
  * @param {{
  *   user_id: number,
  *   sala_id: number,
@@ -12,7 +12,7 @@ const pool = require('../config/database');
  *   preco_id: number,
  *   preco_total: number
  * }} data
- * @returns {Promise<Object>}   // retorna o objeto completo da reserva, incluindo idreserva
+ * @returns {Promise<Object>}   
  */
 async function createReserva(data) {
   const {
@@ -35,14 +35,13 @@ async function createReserva(data) {
   return res.rows[0];
 }
 
-/** Retorna todas as reservas */
 async function getAllReservas() {
   const res = await pool.query(`SELECT * FROM reservas`);
   return res.rows;
 }
 
 /**
- * Atualiza uma reserva por ID.
+ * 
  * @param {number} idreserva
  * @param {{
  *   user_id?: number,
@@ -56,7 +55,6 @@ async function getAllReservas() {
  * @returns {Promise<Object|null>}
  */
 async function updateReserva(idreserva, data) {
-  // monta dinamicamente SETs e valores
   const fields = [];
   const values = [];
   let idx = 1;
@@ -78,7 +76,6 @@ async function updateReserva(idreserva, data) {
   return res.rows[0] || null;
 }
 
-/** Exclui uma reserva por ID */
 async function deleteReserva(idreserva) {
   const res = await pool.query(
     `DELETE FROM reservas WHERE idreserva = $1 RETURNING *`,

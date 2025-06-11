@@ -7,7 +7,7 @@ const UserController           = require('../controllers/UserController');
 const ReservaController        = require('../controllers/ReservaController');
 const PrecoController          = require('../controllers/PrecoController');
 
-// CRUD de Salas (JSON)
+// CRUD de Salas 
 router.post   ('/salas',              SalaController.criarSala);
 router.get    ('/salas',              SalaController.listarSalas);
 router.put    ('/salas/:idsala',      SalaController.editarSala);
@@ -23,7 +23,7 @@ router.get    ('/localizacoes',                 LocalizacaoController.listarLoca
 router.put    ('/localizacoes/:idlocalizacao',  LocalizacaoController.editarLocalizacoes);
 router.delete ('/localizacoes/:idlocalizacao',  LocalizacaoController.excluirLocalizacao);
 
-// CRUD de Users (alinhado aos nomes dos exports)
+// CRUD de Users 
 router.post   ('/users',             UserController.criarUsers);
 router.get    ('/users',             UserController.listarUsers);  // <<-- corrigido
 router.put    ('/users/:iduser',     UserController.editarUser);   // <<-- corrigido

@@ -3,21 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <title>Login – RoomBooky</title>
-
-  <!-- Fontes -->
   <link href="https://fonts.googleapis.com/css2?family=Volkhov:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- CSS da página -->
   <link rel="stylesheet" href="/styles/login.css" />
 </head>
 <body class="login-page">
-
-  <!-- Fundo + overlay -->
   <div class="background"></div>
   <div class="background-overlay"></div>
-
-  <!-- Header -->
   <header class="top-nav">
     <a href="/" class="logo">RoomBooky</a>
     <nav>
@@ -27,9 +19,7 @@
     </nav>
   </header>
 
-  <!-- Container com Login e Signup -->
   <main class="form-container">
-    <!-- LOGIN VIEW -->
     <div id="login-view" class="view active">
       <h2>Bem Vindo de Volta</h2>
 
@@ -47,7 +37,6 @@
       </p>
     </div>
 
-    <!-- SIGNUP VIEW -->
     <div id="signup-view" class="view">
       <h2>Seja um membro RoomBooky</h2>
 
@@ -69,7 +58,6 @@
     </div>
   </main>
 
-  <!-- Script de alternância e fetch -->
   <script>
     const loginView  = document.getElementById('login-view');
     const signupView = document.getElementById('signup-view');
@@ -103,7 +91,6 @@
       if (err) err.remove();
     });
 
-    // Login
     document.getElementById('btn-login').addEventListener('click', async e => {
       e.preventDefault();
       const email = document.getElementById('login-email').value.trim();
@@ -129,7 +116,6 @@
       }
     });
 
-    // Create account
     document.getElementById('btn-signup').addEventListener('click', async e => {
       e.preventDefault();
       const nome  = document.getElementById('signup-nome').value.trim();
