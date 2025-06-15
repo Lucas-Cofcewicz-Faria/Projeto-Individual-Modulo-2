@@ -115,7 +115,10 @@ Após selecionar uma sala, o usuário é levado à **página de reserva**, onde 
 Algumas funcionalidades administrativas (como criar, editar ou excluir reservas) não estão disponíveis via interface gráfica. Para isso, utilize o uso da ferramenta [Postman](https://www.postman.com/), que permite testar requisições HTTP de forma prática.
 
 ### Explicação em video
-![Video explicativo](/assets/VideoExplicativo(1)(1)(1).mp4)
+Explicação em video
+```
+https://youtu.be/vhDTUSmjU6E
+```
 
 #### Endpoints disponíveis:
 
