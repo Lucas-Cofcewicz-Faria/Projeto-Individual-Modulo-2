@@ -25,9 +25,9 @@ router.delete ('/localizacoes/:idlocalizacao',  LocalizacaoController.excluirLoc
 
 // CRUD de Users 
 router.post   ('/users',             UserController.criarUsers);
-router.get    ('/users',             UserController.listarUsers);  // <<-- corrigido
-router.put    ('/users/:iduser',     UserController.editarUser);   // <<-- corrigido
-router.delete ('/users/:iduser',     UserController.excluirUser);  // <<-- corrigido
+router.get    ('/users',             UserController.listarUsers);  
+router.put    ('/users/:iduser',     UserController.editarUser);   
+router.delete ('/users/:iduser',     UserController.excluirUser);  
 
 // CRUD de Reservas
 router.post   ('/reservas',          ReservaController.criarReserva);

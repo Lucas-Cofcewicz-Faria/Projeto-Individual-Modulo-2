@@ -189,3 +189,39 @@ const isMatch = await bcrypt.compare(senhaEnviada, senhaDoBanco);
 #### Redirecionamento ou Erro
 Se a senha estiver correta, o usuário é redirecionado para a página de reservas.
 Caso contrário, uma mensagem de erro é exibida.
+
+### Decisões Técnicas e Considerações Finais
+
+#### Decisões Técnicas
+
+Durante o desenvolvimento do RoomBooky, algumas decisões técnicas foram fundamentais para garantir a funcionalidade e organização do projeto:
+
+- **Framework e linguagem**: Utilização do Node.js com o framework Express, por sua leveza e facilidade de integração com o padrão MVC.
+- **Template Engine**: Uso do EJS, que permite renderizar HTML com dados do servidor de maneira dinâmica.
+- **Banco de Dados**: PostgreSQL, hospedado no Supabase, garantindo escalabilidade e segurança.
+- **Arquitetura**: Padrão MVC (Model-View-Controller), facilitando a separação de responsabilidades e o desenvolvimento do projeto.
+- **Segurança**: Hash de senhas com `bcrypt`, evitando o armazenamento de dados sensíveis em texto puro.
+- **Testes**: CRUD testado manualmente via Postman, validando diversos cenários possíveis.
+
+#### Principais Aprendizados e Desafios Superados
+
+- Aprendi na prática como organizar um projeto usando MVC e como cada camada se comunica entre si.
+- Entendi como construir um banco de dados relacional desde o modelo conceitual até o físico.
+- Enfrentei desafios na hora de conectar o backend com o Supabase e estruturar corretamente as rotas, especialmente a parte de controller e models, o qual juntei os 2 em uma versão antiga do projeto, quebrando a estrutura do projeto.
+- Juntar o front end com backend também foi um grande desafio, principalmente porque tive que atualizar a database antes, e fetch api era algo que não tinha nemhuma familiaridade no momento.
+
+#### Pontos que Funcionaram Bem
+
+- A separação clara entre as camadas do projeto facilitou o desenvolvimento.
+- A API REST está funcional e bem testada para todas as entidades principais.
+- A navegação entre login, home e reservas está fluida e intuitiva.
+
+#### Pontos que Gostaria de Melhorar
+
+- **Experiência do Usuário (UX)**: Criar transições mais suaves e fluxos mais guiados.
+- **Informações das Salas**: Adicionar descrição detalhada, capacidade, fotos e equipamentos disponíveis.
+- **Popup de Reserva**: Torná-lo mais intuitivo e visualmente agradável.
+- **Responsividade**: Adaptar a interface para funcionar bem em dispositivos móveis.
+- **Dashboard Administrativo**: Criar uma área no frontend para editar e excluir dados sem depender do Postman.
+- **Aparência do Painel do Usuário**: Deixar mais moderno e claro.
+- **Elementos Interativos**: Adicionar animações e microinterações em CSS para tornar a navegação mais envolvente.
