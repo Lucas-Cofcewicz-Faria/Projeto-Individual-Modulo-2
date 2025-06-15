@@ -94,19 +94,19 @@ A seguir, você pode visualizar o funcionamento do sistema RoomBooky por meio de
 
 #### Página Principal + Filtros de Busca
 
-![Página Principal e Filtro](2025-06-15%2011-28-59.gif)
+![Página Principal e Filtro](/assets/PaginaPrincipal.gif)
 
 Na **homepage**, o usuário pode buscar por salas com base no nome e no tamanho desejado. Após clicar em "Reserve", ele é direcionado à página de reservas com uma visualização clara das opções disponíveis e informações como preço, localização, e formulário de reserva.
 
 #### Tela de Login
 
-![Tela de Login](2025-06-15%2011-37-50.gif)
+![Tela de Login](/assets/login.gif)
 
 Na **página de login**, o usuário pode inserir suas credenciais para acessar o sistema. Caso ainda não possua uma conta, ele pode criar uma pelo botão de cadastro. A autenticação é segura e essencial para acessar as reservas.
 
 #### Página de Reservas e Formulário
 
-![Página de Reservas](2025-06-15%2011-39-00.gif)
+![Página de Reservas](/assets/reservas.gif)
 
 Após selecionar uma sala, o usuário é levado à **página de reserva**, onde insere a data, horário de início e término da reserva. O sistema calcula automaticamente o preço total da reserva com base no tempo selecionado e no valor por hora da sala.
 
@@ -115,7 +115,7 @@ Após selecionar uma sala, o usuário é levado à **página de reserva**, onde 
 Algumas funcionalidades administrativas (como criar, editar ou excluir reservas) não estão disponíveis via interface gráfica. Para isso, utilize o uso da ferramenta [Postman](https://www.postman.com/), que permite testar requisições HTTP de forma prática.
 
 ### Explicação em video
-![Video explicativo](VideoExplicativo.mp4)
+![Video explicativo](/assets/VideoExplicativo.mp4)
 
 #### Endpoints disponíveis:
 
