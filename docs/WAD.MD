@@ -168,4 +168,24 @@ Desenvolvi um controller separado para cada entidade da base: `Users`, `Salas`, 
 
 Testei cada controller manualmente e simulei situações com dados inválidos, IDs inexistentes e campos obrigatórios faltando para garantir que os retornos de erro também estavam funcionando corretamente.
 
+### Sistema de Login
+O sistema de login do RoomBooky foi desenvolvido com foco em segurança e funcionalidade. Ele permite que apenas usuários autenticados possam realizar reservas, protegendo a aplicação de acessos não autorizados.
 
+#### Fluxo de Login
+Envio de Dados pelo Usuário
+O usuário acessa a página de login e envia seu e-mail e senha pelo formulário.
+
+#### Validação no Servidor
+O backend recebe os dados e faz a busca no banco de dados para encontrar o usuário com o e-mail informado.
+
+#### Comparação de Senha com Hash
+A senha armazenada no banco está criptografada usando bcrypt. O sistema utiliza bcrypt.compare() para verificar se a senha informada bate com o hash salvo.
+
+``` javascript
+const bcrypt = require("bcrypt");
+const isMatch = await bcrypt.compare(senhaEnviada, senhaDoBanco);
+```
+
+#### Redirecionamento ou Erro
+Se a senha estiver correta, o usuário é redirecionado para a página de reservas.
+Caso contrário, uma mensagem de erro é exibida.
